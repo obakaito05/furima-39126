@@ -4,12 +4,14 @@
 
 | Column             | Type   | Options                   |
 | ------------------ | ------ | -----------               |
-| nickname           | string | null: false, unique: true |
+| nickname           | string | null: false               |
 | email              | string | null: false               |
 | encrypted_password | string | null: false               |
-| name               | string | null: false               |
-| name-kana          | string | null: false               |
-| birthday           | string | null: false               |
+| surname            | string | null: false               |
+| firstname          | string | null: false               |
+| surname_kana       | string | null: false               |
+| firstname_kana     | string | null: false               |
+| birthday           | date   | null: false               |
 
 
 ### Association
@@ -22,30 +24,32 @@
 | Column      | Type       | Options                       |
 | ------      | ------     | -----------                   |
 | title       | string     | null: false                   |
-| price       | string     | null: false                   |
-| category    | string     | null: false                   |
-| state       | string     | null: false                   |
-| postage     | string     | null: false                   |
-| region      | string     | null: false                   |
-| date        | string     | null: false                   |
-| user_id     | references | null: false, foreign_key: true|
+| textbox     | text       | null: false                   |
+| price       | integer    | null: false                   |
+| category_id | integer    | null: false                   |
+| state_id    | integer    | null: false                   |
+| postage_id  | integer    | null: false                   |
+| region_id   | integer    | null: false                   |
+| date_id     | integer    | null: false                   |
+| user        | references | null: false, foreign_key: true|
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_many :comments
 - has_one :buyer
 
 ## buyer テーブル
 
-| Column      | Type       | Options                       |
-| ------      | ------     | -----------                   |
-| user_id     | string     | null: false                   |
-| user-address| string     | null: false                   |
+| Column          | Type       | Options                       |
+| ------          | ------     | -----------                   |
+| user            | references | null: false, foreign_key: true|
+| user_address    | string     | null: false                   |
+| purchase_history| string     | null: false                   |
 
 ### Association
 
-- belongs_to :items
+- belongs_to :item
 
 
 ## comments テーブル
@@ -53,10 +57,10 @@
 | Column   | Type       | Options                        |
 | -------  | ---------- | ------------------------------ |
 | content  | text       | null: false                    |
-| item_id  | references | null: false, foreign_key: true |
-| user_id  | references | null: false, foreign_key: true |
+| item     | references | null: false, foreign_key: true |
+| user     | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
