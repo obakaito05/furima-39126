@@ -62,9 +62,10 @@
 | post_code     | string     | null: false                   |
 | prefecture_id | integer    | null: false                   |
 | municipality  | string     | null: false                   |
-| address       | string     | null: false,foreign_key: true |
-| building      | string     | null: false,foreign_key: true |
-| telephone     | string     | null: false,foreign_key: true |
+| address       | string     | null: false                   |
+| building      | string     | null: false                   |
+| telephone     | string     | null: false                   |
+| buyer         | references | null: false, foreign_key: true|
 
 
 ### Association
