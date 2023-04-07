@@ -5,12 +5,12 @@
 | Column             | Type   | Options                   |
 | ------------------ | ------ | -----------               |
 | nickname           | string | null: false               |
-| email              | string | null: false               |
+| email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
 | surname            | string | null: false               |
-| firstname          | string | null: false               |
+| first_name         | string | null: false               |
 | surname_kana       | string | null: false               |
-| firstname_kana     | string | null: false               |
+| first_name_kana    | string | null: false               |
 | birthday           | date   | null: false               |
 
 
@@ -30,7 +30,7 @@
 | state_id    | integer    | null: false                   |
 | postage_id  | integer    | null: false                   |
 | region_id   | integer    | null: false                   |
-| date_id     | integer    | null: false                   |
+| day_id      | integer    | null: false                   |
 | user        | references | null: false, foreign_key: true|
 
 ### Association
@@ -38,19 +38,29 @@
 - belongs_to :user
 - has_many :comments
 - has_one :buyer
+- has_one :shopping
 
-## buyer テーブル
+## buyers テーブル
 
-| Column          | Type       | Options                       |
-| ------          | ------     | -----------                   |
-| user            | references | null: false, foreign_key: true|
-| user_address    | string     | null: false                   |
-| purchase_history| string     | null: false                   |
+| Column    | Type       | Options                       |
+| ------    | ------     | -----------                   |
+| user      | references | null: false, foreign_key: true|
+| item      | references | null: false, foreign_key: true|
 
 ### Association
 
 - belongs_to :item
 
+
+# shoppings テーブル
+
+| Column    | Type       | Options                       |
+| ------    | ------     | -----------                   |
+| address   | references | null: false, foreign_key: true|
+
+### Association
+
+- belongs_to :item
 
 ## comments テーブル
 
