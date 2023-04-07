@@ -18,6 +18,7 @@
 
 - has_many :comments
 - has_many :items
+- has_one :buyer
 
 ## items テーブル
 
@@ -38,7 +39,6 @@
 - belongs_to :user
 - has_many :comments
 - has_one :buyer
-- has_one :shopping
 
 ## buyers テーブル
 
@@ -50,17 +50,25 @@
 ### Association
 
 - belongs_to :item
+- belongs_to :user
+- has_one :shopping
 
 
 # shoppings テーブル
 
-| Column    | Type       | Options                       |
-| ------    | ------     | -----------                   |
-| address   | references | null: false, foreign_key: true|
+| Column        | Type       | Options                       |
+| ------        | ------     | -----------                   |
+| post_code     | string     | null: false                   |
+| prefecture_id | integer    | null: false                   |
+| municipality  | string     | null: false                   |
+| address       | string     | null: false                   |
+| building      | string     | null: false                   |
+| telephone     | string     | null: false                   |
 
 ### Association
 
-- belongs_to :item
+- belongs_to :buyer
+
 
 ## comments テーブル
 
