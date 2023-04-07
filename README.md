@@ -28,11 +28,12 @@
 | textbox     | text       | null: false                   |
 | price       | integer    | null: false                   |
 | category_id | integer    | null: false                   |
-| state_id    | integer    | null: false                   |
+|prefecture_id| integer    | null: false                   |
 | postage_id  | integer    | null: false                   |
 | region_id   | integer    | null: false                   |
-| day_id      | integer    | null: false                   |
+| shipment_id | integer    | null: false                   |
 | user        | references | null: false, foreign_key: true|
+
 
 ### Association
 
@@ -61,9 +62,10 @@
 | post_code     | string     | null: false                   |
 | prefecture_id | integer    | null: false                   |
 | municipality  | string     | null: false                   |
-| address       | string     | null: false                   |
-| building      | string     | null: false                   |
-| telephone     | string     | null: false                   |
+| address       | string     | null: false,foreign_key: true |
+| building      | string     | null: false,foreign_key: true |
+| telephone     | string     | null: false,foreign_key: true |
+
 
 ### Association
 
