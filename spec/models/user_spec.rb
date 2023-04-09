@@ -49,6 +49,14 @@ RSpec.describe User, type: :model do
         @user.surname = 'obana'
         @user.valid?
       end
+      it 'surnameが空だと登録できない' do
+        @user.surname = ''
+        @user.valid?
+      end
+      it 'first_nameが空だと登録できない' do
+        @user.first_name = ''
+        @user.valid?
+      end
       it 'first_nameが漢字、平仮名、カタカナ以外だと登録できない' do
         @user.first_name = 'kaito'
         @user.valid?
@@ -57,13 +65,39 @@ RSpec.describe User, type: :model do
         @user.surname_kana = 'oba2'
         @user.valid?
       end
+      it 'surname_kanaが空だと登録できない' do
+        @user.surname_kana = ''
+        @user.valid?
+      end
       it 'first_name_kanaがカタカナ以外だと登録できない' do
         @user.first_name_kana = 'kai12'
+        @user.valid?
+      end
+      it 'first_name_kanaが空だと登録できない' do
+        @user.first_name_kana = ''
         @user.valid?
       end
       it 'passwordが半角英数字を含まないときは登録できない' do
         @user.password = '123456'
         @user.password_confirmation = '123456'
+        @user.valid?
+      end
+      it 'passwordが英語のみだと登録できない' do
+        @user.password = 'aaaaaa'
+        @user.password_confirmation = 'aaaaaa'
+        @user.valid?
+      end
+      it 'passwordが全角の時は登録できない' do
+        @user.password = 'ｓｓｓｓｓｓ３'
+        @user.password_confirmation = 'ｓｓｓｓｓｓ３'
+        @user.valid?
+      end
+      it 'nicknameが空の時は登録できない' do
+        @user.nickname = ''
+        @user.valid?
+      end
+      it 'birthdayが空の時は登録できない' do
+        @user.birthday = ''
         @user.valid?
       end
     end
