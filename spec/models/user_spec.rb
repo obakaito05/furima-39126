@@ -45,6 +45,27 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
+      it 'surnameが漢字、平仮名、カタカナ以外だと登録できない' do
+        @user.surname = 'obana'
+        @user.valid?
+      end
+      it 'first_nameが漢字、平仮名、カタカナ以外だと登録できない' do
+        @user.first_name = 'kaito'
+        @user.valid?
+      end
+      it 'surname_kanaがカタカナ以外だと登録できない' do
+        @user.surname_kana = 'oba2'
+        @user.valid?
+      end
+      it 'first_name_kanaがカタカナ以外だと登録できない' do
+        @user.first_name_kana = 'kai12'
+        @user.valid?
+      end
+      it 'passwordが半角英数字を含まないときは登録できない' do
+        @user.password = '123456'
+        @user.password_confirmation = '123456'
+        @user.valid?
+      end
     end
   end
 end
