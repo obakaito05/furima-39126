@@ -8,6 +8,6 @@ class User < ApplicationRecord
          validates :surname, presence: true, format: { with: /\A[ぁ-んァ-ヶー-龥]+\z/ }
          validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ヶー-龥]+\z/ }
          validates :surname_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
-         validates :first_name_kana, presence: true,  with: /\A[ァ-ヶー－]+\z/
+         validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
          validates :birthday, presence: true
 end
