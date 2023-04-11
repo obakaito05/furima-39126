@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
+  has_one_attached :image
 
 
   validates :title, presence: true
@@ -10,4 +11,5 @@ class Item < ApplicationRecord
   validates :postage_id, presence: true
   validates :region_id, presence: true
   validates :shipment_id, presence: true
+  validates :image, presence: true
 end
