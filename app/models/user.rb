@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-        # has_many :comments
+         # has_many :comments
+         has_many :items
 
          validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
          validates :nickname, presence: true
