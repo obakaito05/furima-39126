@@ -17,5 +17,4 @@ class Item < ApplicationRecord
   validates :postage_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :region_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :shipment_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :image, presence: true
 end
