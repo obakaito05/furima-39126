@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :postage
   belongs_to :region
   belongs_to :shipment
+  #has_one :buyer
 
   validates :image, presence: true
   validates :title, presence: true
