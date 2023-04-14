@@ -1,4 +1,4 @@
-class Buyer < ApplicationRecord
-  belongs_to :item
-  belongs_to :user
-end
+# class Buyer < ApplicationRecord
+#   belongs_to :item
+#   belongs_to :user
+# end
