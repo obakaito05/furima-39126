@@ -3,11 +3,11 @@ class BuyerShopping
   attr_accessor :post_code, :prefecture_id, :municipality, :address, :building, :telephone, :user, :item, :buyer
 
   with_options presence: true do
-    validates :post_code, presence: true
+    validates :post_code, presence: true, format: { with: /\A\d{3}[-]\d{4}\z/ }
     validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"}
     validates :municipality, presence: true
     validates :address, presence: true
-    validates :telephone, presence: true
+    validates :telephone, presence: true, format: { with: /\A\d{10}$|^\d{11}\z/}
   end
 
   def save
