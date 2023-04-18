@@ -6,11 +6,13 @@ class BuyersController < ApplicationController
   end
 
   def create
+    @item = Item.find(params[:item_id])
     @buyer_shopping = BuyerShopping.new(buyer_params)
-    if @buyer_shopping.save
+    if @buyer_shopping.valid?
+      @buyer_shopping.save
       redirect_to root_path
     else
-      render :new
+      render :index
     end
   end
 
