@@ -2,7 +2,7 @@ class CreateShoppings < ActiveRecord::Migration[6.0]
   def change
     create_table :shoppings do |t|
       t.string :post_code, null: false
-      t.integer :prefecture_id, null: false
+      t.integer :region_id, null: false
       t.string :municipality, null: false
       t.string :address, null: false
       t.string :building

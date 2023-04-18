@@ -54,6 +54,11 @@ RSpec.describe BuyerShopping, type: :model do
         @buyer_shopping.valid?
         expect(@buyer_shopping.errors.full_messages).to include("Password can't be blank")
       end
+      it "tokenが空では登録できないこと" do
+        @order.token = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
