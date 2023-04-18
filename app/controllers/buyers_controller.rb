@@ -1,9 +1,12 @@
 class BuyersController < ApplicationController
-  before_action :contributor_confirmation, only: :create
+  before_action :authenticate_user!
 
   def index
     @buyer_shopping = BuyerShopping.new
     @item = Item.find(params[:item_id])
+    if current_user == @item.user
+      redirect_to root_path
+    end
   end
 
   def create
@@ -30,10 +33,5 @@ class BuyersController < ApplicationController
       card: buyer_params[:token], 
       currency: 'jpy'               
     )
-  end
-  def contributor_confirmation
-    unless current_user == @item.user
-      redirect_to items_path
-    end
   end
 end
