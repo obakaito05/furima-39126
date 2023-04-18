@@ -1,4 +1,5 @@
 class BuyersController < ApplicationController
+  before_action :contributor_confirmation, only: :create
 
   def index
     @buyer_shopping = BuyerShopping.new
@@ -23,11 +24,16 @@ class BuyersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  
     Payjp::Charge.create(
-      amount: @item.price,  # 商品の値段
-      card: buyer_params[:token],    # カードトークン
-      currency: 'jpy'                 # 通貨の種類（日本円）
+      amount: @item.price,  
+      card: buyer_params[:token], 
+      currency: 'jpy'               
     )
+  end
+  def contributor_confirmation
+    unless current_user == @item.user
+      redirect_to items_path
+    end
   end
 end
