@@ -13,6 +13,10 @@ RSpec.describe BuyerShopping, type: :model do
       it '必須の項目が入力されていれば購入できる' do
         expect(@buyer_shopping).to be_valid
       end
+      it '建物名が空でも購入できる' do
+        @buyer_shopping.building = ''
+        expect(@buyer_shopping).to be_valid
+      end
     end
     context '商品購入ができない場合' do
       it '郵便番号が入力されていない' do
@@ -54,6 +58,26 @@ RSpec.describe BuyerShopping, type: :model do
         @buyer_shopping.telephone = '111111111'
         @buyer_shopping.valid?
         expect(@buyer_shopping.errors.full_messages).to include("Telephone is invalid")
+      end
+      it '電話番号が半角数字以外は登録できない' do
+        @buyer_shopping.telephone = '２１３４５６７７６５２'
+        @buyer_shopping.valid?
+        expect(@buyer_shopping.errors.full_messages).to include("Telephone is invalid")
+      end
+      it 'userが紐付いていないと保存できないこと' do
+        @buyer_shopping.user_id = nil
+        @buyer_shopping.valid?
+        expect(@buyer_shopping.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐付いていないと保存できないこと' do
+        @buyer_shopping.item_id = nil
+        @buyer_shopping.valid?
+        expect(@buyer_shopping.errors.full_messages).to include("Item can't be blank")
+      end
+      it "tokenが空では登録できないこと" do
+        @buyer_shopping.token = nil
+        @buyer_shopping.valid?
+        expect(@buyer_shopping.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
