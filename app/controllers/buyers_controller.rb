@@ -25,7 +25,7 @@ class BuyersController < ApplicationController
 
   private
   def buyer_params
-    params.require(:buyer_shopping).permit(:post_code, :region_id, :municipality, :address, :building, :telephone).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:buyer_shopping).permit(:post_code, :region_id, :municipality, :address, :building, :telephone ).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def pay_item
