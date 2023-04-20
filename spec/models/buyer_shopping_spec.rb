@@ -32,7 +32,7 @@ RSpec.describe BuyerShopping, type: :model do
       it '都道府県の住所が「---」選択されている場合は出品できない' do
         @buyer_shopping.region_id = '1'
         @buyer_shopping.valid?
-        expect(@buyer_shopping.errors.full_messages).to include("Region can't be blank")
+        expect(@buyer_shopping.errors.full_messages).to include("Region を選択してください。")
       end
       it '市町村が入力されていない' do
         @buyer_shopping.municipality = ''
