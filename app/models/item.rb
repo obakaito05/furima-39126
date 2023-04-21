@@ -13,9 +13,9 @@ class Item < ApplicationRecord
   validates :title, presence: true
   validates :textbox, presence: true
   validates :price, numericality: { greater_than: 299, less_than: 10_000_000, only_integer: true }
-  validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :postage_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :region_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :shipment_id, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :category_id, numericality: { other_than: 1 , message: "を選択してください"}
+  validates :prefecture_id, numericality: { other_than: 1 , message: "を選択してください"}
+  validates :postage_id, numericality: { other_than: 1 , message: "を選択してください"}
+  validates :region_id, numericality: { other_than: 1 , message: "を選択してください"}
+  validates :shipment_id, numericality: { other_than: 1 , message: "を選択してください"}
 end
